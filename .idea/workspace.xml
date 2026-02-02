@@ -5,7 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="80d2c675-821f-4796-bd45-51bbd08fe92c" name="Changes" comment="init commit">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/common/Model.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/common/Person.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/models/Bill.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/models/Customer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/models/GroupMenuItem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/models/Menu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/models/MenuItem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/models/OrderItem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/models/Reservation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/models/Table.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/models/Waiter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/emts/exception/BillException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/emts/exception/CustomerException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/emts/exception/MenuException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/emts/exception/MenuItemException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/emts/exception/OrderException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/emts/exception/OrderItemException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/emts/exception/PhoneNumberException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/emts/exception/ReservationException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/emts/exception/TableException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/emts/exception/WaiterException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/emts/exception/common/RestaurantException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/emts/util/PhoneNumber.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/emts/util/Printable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emts/util/CrudOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/emts/util/CrudOperation.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,13 +41,27 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "mohamed-taha-elmeligy"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/mohamed-taha-elmeligy/restaurant-.git",
+    "accountId": "2663dbb9-4c87-4e22-8f52-e827a8db4ee8"
+  }
+}]]></component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 4
 }]]></component>
@@ -34,6 +74,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "SONARLINT_PRECOMMIT_ANALYSIS": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
@@ -58,7 +99,15 @@
       <option name="project" value="LOCAL؜" />
       <updated>1770045593495</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL؜-٠٠٠٠٢" summary="init commit">
+      <option name="closed" value="true" />
+      <created>1770046265835</created>
+      <option name="number" value="٠٠٠٠٢" />
+      <option name="presentableId" value="LOCAL؜-٠٠٠٠٢" />
+      <option name="project" value="LOCAL؜" />
+      <updated>1770046265835</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
