@@ -2,13 +2,14 @@ package com.emts.domain.models;
 
 import com.emts.domain.common.Model;
 import com.emts.exception.OrderException;
+import com.emts.util.Printable;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Order extends Model {
+public class Order extends Model implements Printable {
 
     private static final AtomicInteger baseId;
 
@@ -72,5 +73,24 @@ public class Order extends Model {
     private static void checkTable(Table table) {
         if (table == null)
             throw new OrderException("Table is empty");
+    }
+
+    @Override
+    public void print() {
+        System.out.println("========================================");
+        System.out.println("         ORDER #" + getId());
+        System.out.println("========================================");
+        System.out.printf("Table: %d | Waiter: %s%n", table.getId(), waiter.getName());
+        System.out.println("----------------------------------------");
+
+        int count = 1;
+        for (OrderItem item : orderItems) {
+            System.out.printf("%d. ", count++);
+            item.print();
+        }
+
+        System.out.println("----------------------------------------");
+        System.out.printf("TOTAL: %.2f%n", getTotalPrice());
+        System.out.println("========================================");
     }
 }

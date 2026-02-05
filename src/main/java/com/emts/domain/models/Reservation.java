@@ -3,11 +3,12 @@ package com.emts.domain.models;
 import com.emts.domain.common.Model;
 import com.emts.enums.TableStatus;
 import com.emts.exception.ReservationException;
+import com.emts.util.Printable;
 
 import java.time.LocalDateTime;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Reservation extends Model {
+public class Reservation extends Model implements Printable {
 
     private static final AtomicInteger baseId;
 
@@ -67,5 +68,16 @@ public class Reservation extends Model {
     private static void checkDate(LocalDateTime date) {
         if (date == null || date.isBefore(LocalDateTime.now()))
             throw new ReservationException("Reservation date must be in the future");
+    }
+
+    @Override
+    public void print() {
+        System.out.println("========================================");
+        System.out.println("      RESERVATION #" + getId());
+        System.out.println("========================================");
+        System.out.printf("Customer: %s | Phone: %s%n", customer.getName(), customer.getPhoneNumber());
+        System.out.printf("Table: %d (Capacity: %d)%n", table.getId(), table.getMaxCapacity());
+        System.out.printf("Date & Time: %s%n", date);
+        System.out.println("========================================");
     }
 }

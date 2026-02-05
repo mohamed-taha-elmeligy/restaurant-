@@ -2,11 +2,12 @@ package com.emts.domain.models;
 
 import com.emts.domain.common.Model;
 import com.emts.exception.BillException;
+import com.emts.util.Printable;
 
 import java.math.BigDecimal;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Bill extends Model {
+public class Bill extends Model implements Printable {
 
     private static final AtomicInteger baseId = new AtomicInteger(0);
 
@@ -49,5 +50,24 @@ public class Bill extends Model {
     private static void checkTips(BigDecimal tips) {
         if (tips == null || tips.compareTo(BigDecimal.ZERO) < 0)
             throw new BillException("Tips must be at least 0");
+    }
+
+    @Override
+    public void print() {
+        System.out.println("========================================");
+        System.out.println("           BILL #" + getId());
+        System.out.println("========================================");
+        System.out.println();
+
+        if (order != null) {
+            order.print();
+        }
+
+        System.out.println("----------------------------------------");
+        System.out.printf("Order Total:        %20.2f%n", order.getTotalPrice());
+        System.out.printf("Tips:               %20.2f%n", tips);
+        System.out.println("----------------------------------------");
+        System.out.printf("TOTAL AMOUNT:       %20.2f%n", getTotalAmount());
+        System.out.println("========================================");
     }
 }

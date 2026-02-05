@@ -2,11 +2,12 @@ package com.emts.domain.models;
 
 import com.emts.domain.common.Model;
 import com.emts.exception.MenuItemException;
+import com.emts.util.Printable;
 
 import java.math.BigDecimal;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class MenuItem extends Model {
+public class MenuItem extends Model implements Printable {
 
     // ======= Static Attributes =======
     private static final AtomicInteger baseId;
@@ -72,5 +73,11 @@ public class MenuItem extends Model {
     private static void checkName(String name){
         if (name == null || name.isBlank())
             throw new MenuItemException("Name is empty");
+    }
+
+    @Override
+    public void print() {
+        System.out.printf("%s | Price: %.2f | Discount: %.2f | Final: %.2f%n",
+                name, price, discount, price.subtract(discount));
     }
 }

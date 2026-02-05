@@ -1,10 +1,11 @@
 package com.emts.domain.models;
 
 import com.emts.exception.GroupMenuItemException;
+import com.emts.util.Printable;
 
 import java.math.BigDecimal;
 
-public class GroupMenuItem extends MenuItem{
+public class GroupMenuItem extends MenuItem implements Printable {
 
     private int count ;
 
@@ -32,5 +33,16 @@ public class GroupMenuItem extends MenuItem{
     private static void checkCount(int count) {
         if (count < 2)
             throw new GroupMenuItemException("Count must be at least 2");
+    }
+
+    @Override
+    public void print() {
+        System.out.println("----------------------------------------");
+        System.out.printf("Item: %s%n", getName());
+        System.out.printf("Price: %.2f%n", getPrice());
+        System.out.printf("Discount: %.2f%%%n", getDiscount());
+        System.out.printf("Count: %d%n", count);
+        System.out.printf("Total: %.2f%n", getPrice().multiply(BigDecimal.valueOf(count)));
+        System.out.println("----------------------------------------");
     }
 }

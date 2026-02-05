@@ -2,11 +2,12 @@ package com.emts.domain.models;
 
 import com.emts.domain.common.Model;
 import com.emts.exception.OrderItemException;
+import com.emts.util.Printable;
 
 import java.math.BigDecimal;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class OrderItem extends Model {
+public class OrderItem extends Model implements Printable {
 
     private static final AtomicInteger baseId;
 
@@ -54,5 +55,10 @@ public class OrderItem extends Model {
     private static void checkMenuItem(MenuItem menuItem){
         if (menuItem == null )
             throw new OrderItemException("MenuItem is null");
+    }
+
+    @Override
+    public void print() {
+        System.out.printf("%s x%d = %.2f%n", menuItem.getName(), quantity, getTotalPrice());
     }
 }

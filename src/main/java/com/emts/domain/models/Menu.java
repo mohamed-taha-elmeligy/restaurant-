@@ -2,12 +2,13 @@ package com.emts.domain.models;
 
 import com.emts.domain.common.Model;
 import com.emts.exception.MenuException;
+import com.emts.util.Printable;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Menu extends Model {
+public class Menu extends Model implements Printable {
 
     private static final AtomicInteger baseId;
 
@@ -42,5 +43,19 @@ public class Menu extends Model {
     private static void checkItems(List<MenuItem> menuItems) {
         if (menuItems == null || menuItems.isEmpty())
             throw new MenuException("Menu items cannot be empty");
+    }
+
+    @Override
+    public void print() {
+        System.out.println("========================================");
+        System.out.println("         MENU #" + getId());
+        System.out.println("========================================");
+        System.out.println();
+
+        for (MenuItem item : menuItems) {
+            item.print();
+        }
+
+        System.out.println("========================================");
     }
 }

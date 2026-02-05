@@ -2,9 +2,11 @@ package com.emts.domain.models;
 
 import com.emts.domain.common.Person;
 import com.emts.util.PhoneNumber;
+import com.emts.util.Printable;
+
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Customer extends Person {
+public class Customer extends Person implements Printable {
 
     // ======= Static Attributes =======
     private static final AtomicInteger baseId;
@@ -32,4 +34,12 @@ public class Customer extends Person {
         return this;
     }
 
+    @Override
+    public void print() {
+        System.out.println("----------------------------------------");
+        System.out.printf("Customer ID:        %s%n", getId());
+        System.out.printf("Name:               %s%n", getName());
+        System.out.printf("Phone:              %s%n", phoneNumber);
+        System.out.println("----------------------------------------");
+    }
 }
