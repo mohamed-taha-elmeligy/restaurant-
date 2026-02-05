@@ -1,10 +1,12 @@
 package com.emts.util;
 
-public interface CrudOperation<T> {
+import java.util.ArrayList;
 
+public interface CrudOperation<K,T> {
     T create(T t);
     T update(T t);
-    T findById(int id);
-    boolean delete(int id);
-
+    T findById(K id);
+    T delete(K id);
+    ArrayList<T> findAll();
+    boolean exists (K id);
 }
