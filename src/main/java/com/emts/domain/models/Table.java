@@ -3,6 +3,7 @@ package com.emts.domain.models;
 import com.emts.domain.common.Model;
 import com.emts.enums.TableStatus;
 import com.emts.exception.TableException;
+import com.emts.util.Console;
 import com.emts.util.Printable;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -59,6 +60,8 @@ public class Table extends Model implements Printable {
 
     @Override
     public void print() {
+        Console.plus();
         System.out.printf("Table #%d | Capacity: %d | Status: %s%n", getId(), maxCapacity, tableStatus);
+        Console.plus();
     }
 }

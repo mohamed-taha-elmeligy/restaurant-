@@ -2,7 +2,7 @@ package com.emts.domain.repositories;
 
 import com.emts.domain.models.Reservation;
 import com.emts.exception.ReservationException;
-import com.emts.util.CrudOperation;
+import com.emts.util.crud.CrudOperation;
 
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
@@ -13,7 +13,7 @@ public class ReservationRepository implements CrudOperation<Integer, Reservation
     // In-memory repository for OOP practice
 
     private static final ReservationRepository INSTANCE = new ReservationRepository();
-    private static final ConcurrentMap<Integer, Reservation> Database = new ConcurrentHashMap<>();
+    private final ConcurrentMap<Integer, Reservation> database = new ConcurrentHashMap<>();
 
     private ReservationRepository() {}
 
@@ -26,7 +26,7 @@ public class ReservationRepository implements CrudOperation<Integer, Reservation
         if (reservation == null)
             throw new ReservationException("Reservation cannot be null");
 
-        if (Database.putIfAbsent(reservation.getId(), reservation) != null)
+        if (database.putIfAbsent(reservation.getId(), reservation) != null)
             throw new ReservationException("Reservation already exists with ID: " + reservation.getId());
 
         return reservation;
@@ -37,21 +37,21 @@ public class ReservationRepository implements CrudOperation<Integer, Reservation
         if (reservation == null)
             throw new ReservationException("Reservation cannot be null");
 
-        if (!Database.containsKey(reservation.getId()))
+        if (!database.containsKey(reservation.getId()))
             throw new ReservationException("Cannot update. Reservation not found with ID: " + reservation.getId());
 
-        Database.put(reservation.getId(), reservation);
+        database.put(reservation.getId(), reservation);
         return reservation;
     }
 
     @Override
     public Reservation findById(Integer id) {
-        return Database.get(id);
+        return database.get(id);
     }
 
     @Override
     public Reservation delete(Integer id) {
-        Reservation deleted = Database.remove(id);
+        Reservation deleted = database.remove(id);
         if (deleted == null)
             throw new ReservationException("Cannot delete. Reservation not found with ID: " + id);
 
@@ -60,11 +60,11 @@ public class ReservationRepository implements CrudOperation<Integer, Reservation
 
     @Override
     public ArrayList<Reservation> findAll() {
-        return new ArrayList<>(Database.values());
+        return new ArrayList<>(database.values());
     }
 
     @Override
     public boolean exists(Integer id) {
-        return Database.containsKey(id);
+        return database.containsKey(id);
     }
 }

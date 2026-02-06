@@ -2,6 +2,7 @@ package com.emts.domain.models;
 
 import com.emts.domain.common.Model;
 import com.emts.exception.MenuItemException;
+import com.emts.util.Console;
 import com.emts.util.Printable;
 
 import java.math.BigDecimal;
@@ -77,7 +78,9 @@ public class MenuItem extends Model implements Printable {
 
     @Override
     public void print() {
+        Console.plus();
         System.out.printf("%s | Price: %.2f | Discount: %.2f | Final: %.2f%n",
                 name, price, discount, price.subtract(discount));
+        Console.plus();
     }
 }

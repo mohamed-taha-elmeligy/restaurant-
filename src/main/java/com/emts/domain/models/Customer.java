@@ -1,6 +1,7 @@
 package com.emts.domain.models;
 
 import com.emts.domain.common.Person;
+import com.emts.util.Console;
 import com.emts.util.PhoneNumber;
 import com.emts.util.Printable;
 
@@ -36,10 +37,10 @@ public class Customer extends Person implements Printable {
 
     @Override
     public void print() {
-        System.out.println("----------------------------------------");
+        Console.plus();
         System.out.printf("Customer ID:        %s%n", getId());
         System.out.printf("Name:               %s%n", getName());
         System.out.printf("Phone:              %s%n", phoneNumber);
-        System.out.println("----------------------------------------");
+        Console.plus();
     }
 }

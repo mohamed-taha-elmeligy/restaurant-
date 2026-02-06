@@ -2,6 +2,7 @@ package com.emts.domain.models;
 
 import com.emts.domain.common.Model;
 import com.emts.exception.MenuException;
+import com.emts.util.Console;
 import com.emts.util.Printable;
 
 import java.util.ArrayList;
@@ -47,15 +48,15 @@ public class Menu extends Model implements Printable {
 
     @Override
     public void print() {
-        System.out.println("========================================");
-        System.out.println("         MENU #" + getId());
-        System.out.println("========================================");
-        System.out.println();
+        Console.plus();
+        Console.print("         MENU #" + getId());
+        Console.separator();
+        Console.line();
 
         for (MenuItem item : menuItems) {
             item.print();
         }
 
-        System.out.println("========================================");
+        Console.plus();
     }
 }

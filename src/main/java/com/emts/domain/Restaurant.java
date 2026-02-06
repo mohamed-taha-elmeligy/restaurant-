@@ -1,53 +1,44 @@
 package com.emts.domain;
 
-import com.emts.domain.models.Table;
-import com.emts.domain.repositories.*;
-import com.emts.util.PhoneNumber;
+import com.emts.domain.cli.WaiterCli;
+import com.emts.domain.repositories.WaiterRepository;
+import com.emts.util.Console;
+import com.emts.util.cli.CliOperations;
+
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Restaurant {
 
-    private String name ;
-    private final PhoneNumber phoneNumber;
-
-    private static final TableRepository tables = TableRepository.getInstance();
-    private static final CustomerRepository customers = CustomerRepository.getInstance();
-    private static final ReservationRepository reservations = ReservationRepository.getInstance();
-    private static final BillRepository bills = BillRepository.getInstance();
-    private static final OrderRepository orders = OrderRepository.getInstance();
-    private static final MenuRepository menu = MenuRepository.getInstance();
-    private static final WaiterRepository waiters = WaiterRepository.getInstance();
-    private static final OrderItemRepository orderItems = OrderItemRepository.getInstance();
-    private static final MenuItemRepository menuItems = MenuItemRepository.getInstance();
-    private static final GroupMenuItemRepository groupMenuItems = GroupMenuItemRepository.getInstance();
-
-
-    public Restaurant(String name, String phoneNumber, int tableCapacity) {
-        this.name = name;
-        this.phoneNumber = new PhoneNumber(phoneNumber);
-        this.tables.create(new Table(tableCapacity));
+    public void showWaiters() {
+        CliOperations cliOperations = new WaiterCli(new WaiterRepository(new ConcurrentHashMap<>()));
+        displayOption("Waiter",cliOperations);
     }
 
-    public String getName() {return name;}
-    public Restaurant setName(String name) {
-        this.name = name;
-        return this;
+    private static void displayOption(String name,CliOperations cliOperations){
+        int choice;
+
+        do {
+            Console.print("1- Add "+name);
+            Console.print("2- Update "+name);
+            Console.print("3- Find "+name+" By ID ");
+            Console.print("4- Delete "+name);
+            Console.print("5- Display all "+name+"s");
+            Console.print("6- Exist "+name+" by ID ");
+            Console.print("7- Exit from "+name);
+
+            Console.line();
+            Console.print("Choose: ");
+            choice = Console.intIn();
+
+            switch (choice){
+                case 1 -> cliOperations.add();
+                case 2 -> cliOperations.update();
+                case 3 -> cliOperations.findById();
+                case 4 -> cliOperations.deleteById();
+                case 5 -> cliOperations.displayAll();
+                case 6 -> cliOperations.exists();
+                default -> Console.print("Please choose a number from 1 to 7");
+            }
+        } while (choice != 7);
     }
-
-    public PhoneNumber getPhoneNumber() {return phoneNumber;}
-    public Restaurant setPhoneNumber(String value){
-        phoneNumber.setValue(value);
-        return this;
-    }
-
-    public static TableRepository getTables() {return tables;}
-    public static CustomerRepository getCustomers() {return customers;}
-    public static ReservationRepository getReservations() {return reservations;}
-    public static BillRepository getBills() {return bills;}
-    public static OrderRepository getOrders() {return orders;}
-    public static MenuRepository getMenu() {return menu;}
-    public static WaiterRepository getWaiters() {return waiters;}
-    public static OrderItemRepository getOrderItems() {return orderItems;}
-    public static MenuItemRepository getMenuItems() {return menuItems;}
-    public static GroupMenuItemRepository getGroupMenuItems() {return groupMenuItems;}
-
 }

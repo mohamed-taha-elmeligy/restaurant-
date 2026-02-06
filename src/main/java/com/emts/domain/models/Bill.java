@@ -2,6 +2,7 @@ package com.emts.domain.models;
 
 import com.emts.domain.common.Model;
 import com.emts.exception.BillException;
+import com.emts.util.Console;
 import com.emts.util.Printable;
 
 import java.math.BigDecimal;
@@ -54,20 +55,20 @@ public class Bill extends Model implements Printable {
 
     @Override
     public void print() {
-        System.out.println("========================================");
+        Console.equals();
         System.out.println("           BILL #" + getId());
-        System.out.println("========================================");
-        System.out.println();
+        Console.equals();
+        Console.line();
 
         if (order != null) {
             order.print();
         }
 
-        System.out.println("----------------------------------------");
+        Console.plus();
         System.out.printf("Order Total:        %20.2f%n", order.getTotalPrice());
         System.out.printf("Tips:               %20.2f%n", tips);
-        System.out.println("----------------------------------------");
+        Console.separator();
         System.out.printf("TOTAL AMOUNT:       %20.2f%n", getTotalAmount());
-        System.out.println("========================================");
+        Console.plus();
     }
 }

@@ -1,6 +1,7 @@
 package com.emts.domain.models;
 
 import com.emts.exception.GroupMenuItemException;
+import com.emts.util.Console;
 import com.emts.util.Printable;
 
 import java.math.BigDecimal;
@@ -37,12 +38,12 @@ public class GroupMenuItem extends MenuItem implements Printable {
 
     @Override
     public void print() {
-        System.out.println("----------------------------------------");
+        Console.plus();
         System.out.printf("Item: %s%n", getName());
         System.out.printf("Price: %.2f%n", getPrice());
         System.out.printf("Discount: %.2f%%%n", getDiscount());
         System.out.printf("Count: %d%n", count);
         System.out.printf("Total: %.2f%n", getPrice().multiply(BigDecimal.valueOf(count)));
-        System.out.println("----------------------------------------");
+        Console.plus();
     }
 }

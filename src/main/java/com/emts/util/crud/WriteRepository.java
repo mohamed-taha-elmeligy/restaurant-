@@ -1,4 +1,4 @@
-package com.emts.util;
+package com.emts.util.crud;
 
 public interface WriteRepository<K, V> {
     V create(V v);

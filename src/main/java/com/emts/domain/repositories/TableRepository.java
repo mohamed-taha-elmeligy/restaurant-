@@ -2,7 +2,7 @@ package com.emts.domain.repositories;
 
 import com.emts.domain.models.Table;
 import com.emts.exception.TableException;
-import com.emts.util.CrudOperation;
+import com.emts.util.crud.CrudOperation;
 
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
@@ -13,7 +13,7 @@ public class TableRepository implements CrudOperation<Integer, Table> {
     // In-memory repository for OOP practice
 
     private static final TableRepository INSTANCE = new TableRepository();
-    private static final ConcurrentMap<Integer, Table> Database = new ConcurrentHashMap<>();
+    private final ConcurrentMap<Integer, Table> Database = new ConcurrentHashMap<>();
 
     private TableRepository() {}
 

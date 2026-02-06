@@ -2,7 +2,7 @@ package com.emts.domain.repositories;
 
 import com.emts.domain.models.Customer;
 import com.emts.exception.CustomerException;
-import com.emts.util.CrudOperation;
+import com.emts.util.crud.CrudOperation;
 
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;

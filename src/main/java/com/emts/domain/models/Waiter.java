@@ -2,6 +2,7 @@ package com.emts.domain.models;
 
 import com.emts.domain.common.Person;
 import com.emts.exception.WaiterException;
+import com.emts.util.Console;
 import com.emts.util.Printable;
 
 import java.math.BigDecimal;
@@ -19,6 +20,12 @@ public class Waiter extends Person implements Printable {
 
     public Waiter(String name, BigDecimal salary) {
         super(baseId.incrementAndGet(), name);
+        checkSalary(salary);
+        this.salary = salary;
+    }
+
+    public Waiter(int id,String name, BigDecimal salary) {
+        super(id, name);
         checkSalary(salary);
         this.salary = salary;
     }
@@ -41,6 +48,8 @@ public class Waiter extends Person implements Printable {
 
     @Override
     public void print() {
+        Console.plus();
         System.out.printf("Waiter #%d | Name: %s | Salary: %.2f%n", getId(), getName(), salary);
+        Console.plus();
     }
 }

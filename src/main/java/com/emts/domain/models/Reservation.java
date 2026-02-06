@@ -3,6 +3,7 @@ package com.emts.domain.models;
 import com.emts.domain.common.Model;
 import com.emts.enums.TableStatus;
 import com.emts.exception.ReservationException;
+import com.emts.util.Console;
 import com.emts.util.Printable;
 
 import java.time.LocalDateTime;
@@ -72,12 +73,12 @@ public class Reservation extends Model implements Printable {
 
     @Override
     public void print() {
-        System.out.println("========================================");
-        System.out.println("      RESERVATION #" + getId());
-        System.out.println("========================================");
+        Console.plus();
+        Console.print("      RESERVATION #" + getId());
+        Console.separator();
         System.out.printf("Customer: %s | Phone: %s%n", customer.getName(), customer.getPhoneNumber());
         System.out.printf("Table: %d (Capacity: %d)%n", table.getId(), table.getMaxCapacity());
         System.out.printf("Date & Time: %s%n", date);
-        System.out.println("========================================");
+        Console.plus();
     }
 }

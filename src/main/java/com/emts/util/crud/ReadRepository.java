@@ -1,10 +1,10 @@
-package com.emts.util;
+package com.emts.util.crud;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface ReadRepository<K, V> {
     V findById(K k);
-    ArrayList<V> findAll();
+    List<V> findAll();
     boolean exists(K k);
 
 }

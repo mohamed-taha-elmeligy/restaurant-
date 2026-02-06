@@ -2,7 +2,7 @@ package com.emts.domain.repositories;
 
 import com.emts.domain.models.GroupMenuItem;
 import com.emts.exception.GroupMenuItemException;
-import com.emts.util.CrudOperation;
+import com.emts.util.crud.CrudOperation;
 
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;

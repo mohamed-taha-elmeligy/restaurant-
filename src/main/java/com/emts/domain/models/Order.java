@@ -2,6 +2,7 @@ package com.emts.domain.models;
 
 import com.emts.domain.common.Model;
 import com.emts.exception.OrderException;
+import com.emts.util.Console;
 import com.emts.util.Printable;
 
 import java.math.BigDecimal;
@@ -77,11 +78,11 @@ public class Order extends Model implements Printable {
 
     @Override
     public void print() {
-        System.out.println("========================================");
-        System.out.println("         ORDER #" + getId());
-        System.out.println("========================================");
+        Console.plus();
+        Console.print("         ORDER #" + getId());
+        Console.separator();
         System.out.printf("Table: %d | Waiter: %s%n", table.getId(), waiter.getName());
-        System.out.println("----------------------------------------");
+        Console.separator();
 
         int count = 1;
         for (OrderItem item : orderItems) {
@@ -89,8 +90,8 @@ public class Order extends Model implements Printable {
             item.print();
         }
 
-        System.out.println("----------------------------------------");
+        Console.separator();
         System.out.printf("TOTAL: %.2f%n", getTotalPrice());
-        System.out.println("========================================");
+        Console.plus();
     }
 }

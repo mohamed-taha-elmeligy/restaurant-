@@ -2,6 +2,7 @@ package com.emts.domain.models;
 
 import com.emts.domain.common.Model;
 import com.emts.exception.OrderItemException;
+import com.emts.util.Console;
 import com.emts.util.Printable;
 
 import java.math.BigDecimal;
@@ -59,6 +60,8 @@ public class OrderItem extends Model implements Printable {
 
     @Override
     public void print() {
+        Console.plus();
         System.out.printf("%s x%d = %.2f%n", menuItem.getName(), quantity, getTotalPrice());
+        Console.plus();
     }
 }
