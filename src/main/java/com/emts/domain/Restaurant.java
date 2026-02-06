@@ -1,6 +1,8 @@
 package com.emts.domain;
 
+import com.emts.domain.cli.TableCli;
 import com.emts.domain.cli.WaiterCli;
+import com.emts.domain.repositories.TableRepository;
 import com.emts.domain.repositories.WaiterRepository;
 import com.emts.util.Console;
 import com.emts.util.cli.CliOperations;
@@ -12,6 +14,11 @@ public class Restaurant {
     public void showWaiters() {
         CliOperations cliOperations = new WaiterCli(new WaiterRepository(new ConcurrentHashMap<>()));
         displayOption("Waiter",cliOperations);
+    }
+
+    public void showTables() {
+        CliOperations cliOperations = new TableCli(new TableRepository(new ConcurrentHashMap<>()));
+        displayOption("Table",cliOperations);
     }
 
     private static void displayOption(String name,CliOperations cliOperations){

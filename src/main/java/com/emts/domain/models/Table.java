@@ -1,6 +1,6 @@
 package com.emts.domain.models;
 
-import com.emts.domain.common.Model;
+import com.emts.domain.models.common.Model;
 import com.emts.enums.TableStatus;
 import com.emts.exception.TableException;
 import com.emts.util.Console;
@@ -23,6 +23,12 @@ public class Table extends Model implements Printable {
     // ======= constructors ========
     public Table(int maxCapacity, TableStatus tableStatus) {
         super(baseId.incrementAndGet());
+        checkCapacity(maxCapacity);
+        this.maxCapacity = maxCapacity;
+        this.tableStatus = tableStatus;
+    }
+    public Table(int id, int maxCapacity, TableStatus tableStatus) {
+        super(id);
         checkCapacity(maxCapacity);
         this.maxCapacity = maxCapacity;
         this.tableStatus = tableStatus;

@@ -1,6 +1,6 @@
 package com.emts.domain.models;
 
-import com.emts.domain.common.Person;
+import com.emts.domain.models.common.Person;
 import com.emts.util.Console;
 import com.emts.util.PhoneNumber;
 import com.emts.util.Printable;
@@ -23,6 +23,10 @@ public class Customer extends Person implements Printable {
     // ======= constructors ========
     public Customer(String name, PhoneNumber phoneNumber) {
         super(baseId.incrementAndGet() , name);
+        this.phoneNumber = phoneNumber;
+    }
+    public Customer(int id, String name, PhoneNumber phoneNumber) {
+        super(id , name);
         this.phoneNumber = phoneNumber;
     }
 

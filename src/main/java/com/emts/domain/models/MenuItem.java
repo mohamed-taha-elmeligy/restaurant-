@@ -1,6 +1,6 @@
 package com.emts.domain.models;
 
-import com.emts.domain.common.Model;
+import com.emts.domain.models.common.Model;
 import com.emts.exception.MenuItemException;
 import com.emts.util.Console;
 import com.emts.util.Printable;
@@ -26,12 +26,22 @@ public class MenuItem extends Model implements Printable {
         super(baseId.incrementAndGet());
 
         checkName(name);
-        this.name = name;
-
-        checkPrice(price);
-        this.price = price;
-
         checkDiscount(discount,price);
+        checkPrice(price);
+
+        this.name = name;
+        this.price = price;
+        this.discount = discount;
+    }
+    public MenuItem(int id, String name, BigDecimal price, BigDecimal discount) {
+        super(id);
+
+        checkName(name);
+        checkDiscount(discount,price);
+        checkPrice(price);
+
+        this.name = name;
+        this.price = price;
         this.discount = discount;
     }
 

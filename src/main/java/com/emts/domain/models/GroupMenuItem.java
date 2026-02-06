@@ -15,9 +15,17 @@ public class GroupMenuItem extends MenuItem implements Printable {
         checkCount(count);
         this.count = count;
     }
+    public GroupMenuItem(int id, String name, BigDecimal price, BigDecimal discount, int count) {
+        super(id, name, price, discount);
+        checkCount(count);
+        this.count = count;
+    }
 
     public GroupMenuItem(String name, BigDecimal price, int count) {
         this(name,price,BigDecimal.ZERO,count);
+    }
+    public GroupMenuItem(int id ,String name, BigDecimal price, int count) {
+        this(id, name,price,BigDecimal.ZERO,count);
     }
 
     public int getCount() {

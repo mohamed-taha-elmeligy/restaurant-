@@ -1,6 +1,6 @@
 package com.emts.domain.models;
 
-import com.emts.domain.common.Model;
+import com.emts.domain.models.common.Model;
 import com.emts.enums.TableStatus;
 import com.emts.exception.ReservationException;
 import com.emts.util.Console;
@@ -24,6 +24,18 @@ public class Reservation extends Model implements Printable {
 
     protected Reservation(Customer customer, Table table, LocalDateTime date) {
         super(baseId.incrementAndGet());
+
+        checkCustomer(customer);
+        checkTable(table);
+        checkDate(date);
+
+        this.customer = customer;
+        this.table = table;
+        this.date = date;
+    }
+
+    protected Reservation(int id,Customer customer, Table table, LocalDateTime date) {
+        super(id);
 
         checkCustomer(customer);
         checkTable(table);

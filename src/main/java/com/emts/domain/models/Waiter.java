@@ -1,6 +1,6 @@
 package com.emts.domain.models;
 
-import com.emts.domain.common.Person;
+import com.emts.domain.models.common.Person;
 import com.emts.exception.WaiterException;
 import com.emts.util.Console;
 import com.emts.util.Printable;

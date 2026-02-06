@@ -35,7 +35,8 @@ public class WaiterCli implements CliOperations {
             String name = Console.stringIn();
             Console.print(ENTER_SALARY);
             BigDecimal salary = Console.decimalIn();
-            waiterRepository.create(new Waiter(name, salary)).print();
+            Waiter waiter = new Waiter(name, salary);
+            waiterRepository.create(waiter.getId(), waiter).print();
         } catch (WaiterException e) {
             Console.print("Error adding waiter: " + e.getMessage());
         } catch (Exception e) {
@@ -93,7 +94,7 @@ public class WaiterCli implements CliOperations {
             String name = Console.stringIn();
             Console.print(ENTER_SALARY);
             BigDecimal salary = Console.decimalIn();
-            waiterRepository.update(new Waiter(id, name, salary)).print();
+            waiterRepository.update(id,new Waiter(id, name, salary)).print();
         } catch (WaiterException e) {
             Console.print("Error updating waiter: " + e.getMessage());
         } catch (Exception e) {

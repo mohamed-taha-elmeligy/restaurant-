@@ -1,6 +1,6 @@
 package com.emts.domain.models;
 
-import com.emts.domain.common.Model;
+import com.emts.domain.models.common.Model;
 import com.emts.exception.OrderException;
 import com.emts.util.Console;
 import com.emts.util.Printable;
@@ -25,6 +25,18 @@ public class Order extends Model implements Printable {
 
     protected Order(Table table, Waiter waiter, List<OrderItem> orderItems) {
         super(baseId.incrementAndGet());
+
+        checkTable(table);
+        checkWaiter(waiter);
+        checkOrderItems(orderItems);
+
+        this.table = table;
+        this.waiter = waiter;
+        this.orderItems = new ArrayList<>(orderItems);
+    }
+
+    protected Order(int id, Table table, Waiter waiter, List<OrderItem> orderItems) {
+        super(id);
 
         checkTable(table);
         checkWaiter(waiter);

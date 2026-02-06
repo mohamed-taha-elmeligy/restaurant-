@@ -1,4 +1,4 @@
-package com.emts.domain.common;
+package com.emts.domain.models.common;
 
 public class Model {
     private final int id ;

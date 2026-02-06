@@ -1,6 +1,6 @@
 package com.emts.domain.models;
 
-import com.emts.domain.common.Model;
+import com.emts.domain.models.common.Model;
 import com.emts.exception.OrderItemException;
 import com.emts.util.Console;
 import com.emts.util.Printable;
@@ -23,9 +23,19 @@ public class OrderItem extends Model implements Printable {
         super(baseId.incrementAndGet());
 
         checkMenuItem(menuItem);
-        this.menuItem = menuItem;
-
         checkQuantity(quantity);
+
+        this.menuItem = menuItem;
+        this.quantity = quantity;
+    }
+
+    public OrderItem(int id,MenuItem menuItem, int quantity) {
+        super(id);
+
+        checkMenuItem(menuItem);
+        checkQuantity(quantity);
+
+        this.menuItem = menuItem;
         this.quantity = quantity;
     }
 

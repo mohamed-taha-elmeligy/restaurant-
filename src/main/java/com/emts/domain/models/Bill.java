@@ -1,6 +1,6 @@
 package com.emts.domain.models;
 
-import com.emts.domain.common.Model;
+import com.emts.domain.models.common.Model;
 import com.emts.exception.BillException;
 import com.emts.util.Console;
 import com.emts.util.Printable;
@@ -17,6 +17,16 @@ public class Bill extends Model implements Printable {
 
     public Bill(BigDecimal tips, Order order) {
         super(baseId.incrementAndGet());
+
+        checkTips(tips);
+        checkOrder(order);
+
+        this.tips = tips;
+        this.order = order;
+    }
+
+    public Bill(int id, BigDecimal tips, Order order) {
+        super(id);
 
         checkTips(tips);
         checkOrder(order);

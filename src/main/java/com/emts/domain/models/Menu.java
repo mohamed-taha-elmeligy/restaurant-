@@ -1,6 +1,6 @@
 package com.emts.domain.models;
 
-import com.emts.domain.common.Model;
+import com.emts.domain.models.common.Model;
 import com.emts.exception.MenuException;
 import com.emts.util.Console;
 import com.emts.util.Printable;
@@ -21,6 +21,12 @@ public class Menu extends Model implements Printable {
 
     public Menu(List<MenuItem> menuItems) {
         super(baseId.incrementAndGet());
+        checkItems(menuItems);
+        this.menuItems = new ArrayList<>(menuItems);
+    }
+
+    public Menu(int id, List<MenuItem> menuItems) {
+        super(id);
         checkItems(menuItems);
         this.menuItems = new ArrayList<>(menuItems);
     }
