@@ -8,8 +8,10 @@ import com.emts.util.cli.CliOperations;
 
 import java.math.BigDecimal;
 
-public class WaiterCli implements CliOperations<Waiter> {
+public class WaiterCli implements CliOperations<Integer,Waiter> {
+
     private final WaiterRepository waiterRepository;
+
     private static final String ENTER_ID = "Enter ID of Waiter";
     private static final String ENTER_NAME = "Enter name of Waiter";
     private static final String ENTER_SALARY = "Enter salary of Waiter";
@@ -33,10 +35,13 @@ public class WaiterCli implements CliOperations<Waiter> {
         try {
             Console.print(ENTER_NAME);
             String name = Console.stringIn();
+
             Console.print(ENTER_SALARY);
             BigDecimal salary = Console.decimalIn();
+
             Waiter waiter = new Waiter(name, salary);
             waiterRepository.create(waiter.getId(), waiter).print();
+
         } catch (WaiterException e) {
             Console.print("Error adding waiter: " + e.getMessage());
         } catch (Exception e) {
@@ -49,6 +54,7 @@ public class WaiterCli implements CliOperations<Waiter> {
         try {
             Console.print(ENTER_ID);
             int id = Console.intIn();
+
             Waiter waiter = waiterRepository.findById(id);
             if (waiter == null) {
                 Console.print("Waiter not found with ID: " + id);
@@ -61,14 +67,10 @@ public class WaiterCli implements CliOperations<Waiter> {
     }
 
     @Override
-    public Waiter searchById() {
-        int id;
+    public Waiter searchById(Integer id) {
         Waiter waiter;
 
         try {
-            Console.print(ENTER_ID);
-            id = Console.intIn();
-
             waiter = waiterRepository.findById(id);
             if (waiter == null) {
                 Console.print("Waiter not found with ID: " + id);
@@ -86,6 +88,7 @@ public class WaiterCli implements CliOperations<Waiter> {
         try {
             Console.print(ENTER_ID);
             int id = Console.intIn();
+
             Console.print(waiterRepository.exists(id));
         } catch (Exception e) {
             Console.print("Error checking existence: " + e.getMessage());
@@ -97,8 +100,10 @@ public class WaiterCli implements CliOperations<Waiter> {
         try {
             Console.print(ENTER_ID);
             int id = Console.intIn();
+
             Waiter waiter = waiterRepository.delete(id);
             waiter.print();
+
         } catch (WaiterException e) {
             Console.print("Error deleting waiter: " + e.getMessage());
         } catch (Exception e) {
@@ -111,10 +116,13 @@ public class WaiterCli implements CliOperations<Waiter> {
         try {
             Console.print(ENTER_ID);
             int id = Console.intIn();
+
             Console.print(ENTER_NAME);
             String name = Console.stringIn();
+
             Console.print(ENTER_SALARY);
             BigDecimal salary = Console.decimalIn();
+
             waiterRepository.update(id,new Waiter(id, name, salary)).print();
         } catch (WaiterException e) {
             Console.print("Error updating waiter: " + e.getMessage());

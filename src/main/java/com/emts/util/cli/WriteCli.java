@@ -1,9 +1,9 @@
 package com.emts.util.cli;
 
 
-public interface WriteCli<T> {
+public interface WriteCli<K,T> {
     void displayAll();
     void exists();
     void findById();
-    T searchById();
+    T searchById(K k);
 }

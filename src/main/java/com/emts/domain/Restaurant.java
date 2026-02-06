@@ -13,53 +13,89 @@ public class Restaurant {
     private final TableCli tableCli ;
     private final CustomerCli customerCli ;
     private final ReservationCli reservationCli ;
+    private final GroupMenuItemCli groupMenuItemCli;
     private final MenuItemCli menuItemCli;
+    private final MenuCli menuCli;
+    private final OrderItemCli orderItemCli;
+    private final OrderCli orderCli;
+    private final BillCli billCli;
 
-    private CliOperations<?> cliOperations;
+    private CliOperations<Integer,?> cliOperations;
 
     public Restaurant() {
 
-        waiterCli = new WaiterCli(new WaiterRepository(new ConcurrentHashMap<>()));
-        tableCli = new TableCli(new TableRepository(new ConcurrentHashMap<>()));
-        customerCli = new CustomerCli(new CustomerRepository(new ConcurrentHashMap<>()));
-        menuItemCli = new MenuItemCli(new MenuItemRepository(new ConcurrentHashMap<>()));
+        this.waiterCli = new WaiterCli(new WaiterRepository(new ConcurrentHashMap<>()));
+        this.tableCli = new TableCli(new TableRepository(new ConcurrentHashMap<>()));
+        this.customerCli = new CustomerCli(new CustomerRepository(new ConcurrentHashMap<>()));
+        this.menuItemCli = new MenuItemCli(new MenuItemRepository(new ConcurrentHashMap<>()));
+        this.groupMenuItemCli = new GroupMenuItemCli(new GroupMenuItemRepository(new ConcurrentHashMap<>()));
 
-        reservationCli = new ReservationCli(
+        this.reservationCli = new ReservationCli(
                 new ReservationRepository(new ConcurrentHashMap<>()),
                 customerCli,
                 tableCli
         );
+
+        this.orderItemCli = new OrderItemCli(new OrderItemRepository(new ConcurrentHashMap<>()),menuItemCli);
+        this.menuCli = new MenuCli(new MenuRepository(new ConcurrentHashMap<>()),menuItemCli);
+        this.orderCli = new OrderCli(new OrderRepository(new ConcurrentHashMap<>()),tableCli,waiterCli,orderItemCli);
+        this.billCli = new BillCli(new BillRepository(new ConcurrentHashMap<>()),orderCli);
     }
 
     public void showWaiters() {
-        cliOperations = waiterCli;
-        displayOption("Waiter",cliOperations);
+        this.cliOperations = this.waiterCli;
+        displayOption("Waiter", this.cliOperations);
+    }
+
+    public void showBillClis() {
+        this.cliOperations = this.billCli;
+        displayOption("Bill", this.cliOperations);
+    }
+
+    public void showOrders() {
+        this.cliOperations = this.orderCli;
+        displayOption("Order", this.cliOperations);
+    }
+
+    public void showGroupMenuItems() {
+        this.cliOperations = this.groupMenuItemCli;
+        displayOption("GroupMenuItem", this.cliOperations);
     }
 
     public void showMenuItems() {
-        cliOperations = menuItemCli;
-        displayOption("MenuItem",cliOperations);
+        this.cliOperations = this.menuItemCli;
+        displayOption("MenuItem", this.cliOperations);
     }
 
     public void showTables() {
-        cliOperations = tableCli;
-        displayOption("Table",cliOperations);
+        this.cliOperations = this.tableCli;
+        displayOption("Table", this.cliOperations);
     }
 
-    public void showCustomer() {
-        cliOperations = customerCli;
-        displayOption("Customer",cliOperations);
+    public void showCustomers() {
+        this.cliOperations = this.customerCli;
+        displayOption("Customer", this.cliOperations);
     }
 
-    public void showReservation() {
-        cliOperations = reservationCli;
-        displayOption("Reservation",cliOperations);
+    public void showReservations() {
+        this.cliOperations = this.reservationCli;
+        displayOption("Reservation", this.cliOperations);
+    }
+
+    public void showMenus() {
+        this.cliOperations = this.menuCli;
+        displayOption("Menu", this.cliOperations);
+    }
+
+    public void showOrderItemClis() {
+        this.cliOperations = this.orderItemCli;
+        displayOption("OrderItem", this.cliOperations);
     }
 
 
 
 
-    private static <T> void displayOption(String name, CliOperations<T> cliOperations){
+    private static <T> void displayOption(String name, CliOperations<Integer,T> cliOperations){
         int choice;
 
         do {

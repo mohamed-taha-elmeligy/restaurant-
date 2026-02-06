@@ -10,7 +10,7 @@ import com.emts.util.cli.CliOperations;
 
 import java.time.LocalDate;
 
-public class ReservationCli implements CliOperations<Reservation> {
+public class ReservationCli implements CliOperations<Integer,Reservation> {
     private final ReservationRepository reservationRepository;
     private final CustomerCli customerCli;
     private final TableCli tableCli;
@@ -37,9 +37,13 @@ public class ReservationCli implements CliOperations<Reservation> {
     @Override
     public void add() {
         try {
-            Customer customer = customerCli.searchById();
+            Console.print("Inter id of Customer");
+            int idCustomer = Console.intIn();
+            Customer customer = customerCli.searchById(idCustomer);
 
-            Table table = tableCli.searchById() ;
+            Console.print("Inter id of Table");
+            int idTable = Console.intIn();
+            Table table = tableCli.searchById(idTable);
 
             Console.print(ENTER_DATE);
             LocalDate localDate = Console.dateIn() ;
@@ -73,14 +77,10 @@ public class ReservationCli implements CliOperations<Reservation> {
     }
 
     @Override
-    public Reservation searchById() {
-        int id;
+    public Reservation searchById(Integer id) {
         Reservation waiter;
 
         try {
-            Console.print(ENTER_ID);
-            id = Console.intIn();
-
             waiter = reservationRepository.findById(id);
             if (waiter == null) {
                 Console.print("Reservation not found with ID: " + id);
@@ -128,8 +128,13 @@ public class ReservationCli implements CliOperations<Reservation> {
             Console.print(ENTER_ID);
             int id = Console.intIn();
 
-            Customer customer = customerCli.searchById();
-            Table table = tableCli.searchById() ;
+            Console.print("Inter id of Customer");
+            int idCustomer = Console.intIn();
+            Customer customer = customerCli.searchById(idCustomer);
+
+            Console.print("Inter id Table");
+            int idT = Console.intIn();
+            Table table = tableCli.searchById(idT) ;
 
             Console.print(ENTER_DATE);
             LocalDate localDate = Console.dateIn() ;

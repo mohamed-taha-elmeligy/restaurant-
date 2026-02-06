@@ -8,7 +8,7 @@ import com.emts.util.cli.CliOperations;
 
 import java.math.BigDecimal;
 
-public class MenuItemCli implements CliOperations<MenuItem> {
+public class MenuItemCli implements CliOperations<Integer,MenuItem> {
     private final MenuItemRepository menuItemRepository;
 
     private static final String ENTER_ID = "Enter ID of MenuItem";
@@ -70,19 +70,16 @@ public class MenuItemCli implements CliOperations<MenuItem> {
     }
 
     @Override
-    public MenuItem searchById() {
-        int id;
+    public MenuItem searchById(Integer id) {
         MenuItem menuItem;
 
         try {
-            Console.print(ENTER_ID);
-            id = Console.intIn();
-
             menuItem = menuItemRepository.findById(id);
             if (menuItem == null) {
                 Console.print("MenuItem not found with ID: " + id);
                 return null;
             }
+
             return menuItem;
         } catch (Exception e) {
             Console.print("Error finding menuItem: " + e.getMessage());

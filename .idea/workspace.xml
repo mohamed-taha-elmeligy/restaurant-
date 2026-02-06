@@ -5,15 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="80d2c675-821f-4796-bd45-51bbd08fe92c" name="Changes" comment="Refactor CrudOperation into ReadRepository and WriteRepository interfaces&#10;Add Restaurant Facade class">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/CustomerCli.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/BillCli.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/GroupMenuItemCli.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/MenuCli.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/OrderItemCli.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/emts/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/emts/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/emts/domain/Restaurant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/Restaurant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/CustomerCli.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/CustomerCli.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/MenuItemCli.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/MenuItemCli.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/OrderCli.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/OrderCli.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/ReservationCli.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/ReservationCli.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/TableCli.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/TableCli.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/emts/domain/models/Reservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/models/Reservation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/emts/domain/repositories/CustomerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/repositories/CustomerRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/emts/util/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/emts/util/Console.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/WaiterCli.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/WaiterCli.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emts/util/cli/CliOperations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/emts/util/cli/CliOperations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emts/util/cli/WriteCli.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/emts/util/cli/WriteCli.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,7 +151,15 @@
       <option name="project" value="LOCAL؜" />
       <updated>1770396844295</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL؜-٠٠٠١٠" summary="Refactor CrudOperation into ReadRepository and WriteRepository interfaces&#10;Add Restaurant Facade class">
+      <option name="closed" value="true" />
+      <created>1770407169732</created>
+      <option name="number" value="٠٠٠١٠" />
+      <option name="presentableId" value="LOCAL؜-٠٠٠١٠" />
+      <option name="project" value="LOCAL؜" />
+      <updated>1770407169732</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

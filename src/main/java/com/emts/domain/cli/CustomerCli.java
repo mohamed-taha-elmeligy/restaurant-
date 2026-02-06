@@ -7,7 +7,7 @@ import com.emts.util.Console;
 import com.emts.util.PhoneNumber;
 import com.emts.util.cli.CliOperations;
 
-public class CustomerCli implements CliOperations<Customer> {
+public class CustomerCli implements CliOperations<Integer,Customer> {
     private final CustomerRepository customerRepository;
     private static final String ENTER_PHONE = "Enter phone number of customer";
     private static final String ENTER_ID = "Enter id of customer";
@@ -65,13 +65,9 @@ public class CustomerCli implements CliOperations<Customer> {
     }
 
     @Override
-    public Customer searchById() {
+    public Customer searchById(Integer id) {
         Customer customer;
-        int id;
         try {
-            Console.print(ENTER_ID);
-            id = Console.intIn();
-
             customer = customerRepository.findById(id);
             if (customer == null) {
                 Console.print("Customer not found with ID: " + id);

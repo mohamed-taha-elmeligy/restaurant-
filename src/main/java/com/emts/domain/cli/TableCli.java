@@ -7,7 +7,7 @@ import com.emts.exception.TableException;
 import com.emts.util.Console;
 import com.emts.util.cli.CliOperations;
 
-public class TableCli implements CliOperations<Table> {
+public class TableCli implements CliOperations<Integer,Table> {
 
     private final TableRepository tableRepository;
     private static final String ENTER_CAPACITY = "Enter capacity of table";
@@ -64,14 +64,10 @@ public class TableCli implements CliOperations<Table> {
     }
 
     @Override
-    public Table searchById() {
-        int id;
+    public Table searchById(Integer id) {
         Table table;
 
         try {
-            Console.print(ENTER_ID);
-            id = Console.intIn();
-
             table = tableRepository.findById(id);
             if (table == null) {
                 Console.print("Table not found with ID: " + id);
