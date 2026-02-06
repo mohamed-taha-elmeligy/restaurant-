@@ -1,4 +1,4 @@
 package com.emts.util.cli;
 
-public interface CliOperations extends ReadCli,WriteCli {
+public interface CliOperations<T> extends ReadCli,WriteCli<T> {
 }

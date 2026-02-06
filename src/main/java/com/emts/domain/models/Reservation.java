@@ -6,7 +6,7 @@ import com.emts.exception.ReservationException;
 import com.emts.util.Console;
 import com.emts.util.Printable;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Reservation extends Model implements Printable {
@@ -15,14 +15,14 @@ public class Reservation extends Model implements Printable {
 
     private Customer customer;
     private Table table;
-    private LocalDateTime date;
+    private LocalDate date;
 
     // static block
     static {
         baseId = new AtomicInteger(0);
     }
 
-    protected Reservation(Customer customer, Table table, LocalDateTime date) {
+    public Reservation(Customer customer, Table table, LocalDate date) {
         super(baseId.incrementAndGet());
 
         checkCustomer(customer);
@@ -34,7 +34,7 @@ public class Reservation extends Model implements Printable {
         this.date = date;
     }
 
-    protected Reservation(int id,Customer customer, Table table, LocalDateTime date) {
+    public Reservation(int id, Customer customer, Table table, LocalDate date) {
         super(id);
 
         checkCustomer(customer);
@@ -60,8 +60,8 @@ public class Reservation extends Model implements Printable {
         return this;
     }
 
-    public LocalDateTime getDate() {return date;}
-    public Reservation setDate(LocalDateTime date) {
+    public LocalDate getDate() {return date;}
+    public Reservation setDate(LocalDate date) {
         checkDate(date);
         this.date = date;
         return this;
@@ -78,8 +78,8 @@ public class Reservation extends Model implements Printable {
         if (table.getTableStatus() != TableStatus.FREE)
             throw new ReservationException("Table is not available");
     }
-    private static void checkDate(LocalDateTime date) {
-        if (date == null || date.isBefore(LocalDateTime.now()))
+    private static void checkDate(LocalDate date) {
+        if (date == null || date.isBefore(LocalDate.now()))
             throw new ReservationException("Reservation date must be in the future");
     }
 

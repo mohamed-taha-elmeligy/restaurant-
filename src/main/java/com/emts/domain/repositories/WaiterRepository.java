@@ -8,7 +8,6 @@ import java.util.concurrent.ConcurrentMap;
 public class WaiterRepository extends Repository<Integer, Waiter> {
 
     // In-memory repository for OOP practice
-
     public WaiterRepository(ConcurrentMap<Integer, Waiter> database) {
         super(database);
     }

@@ -1,6 +1,7 @@
 package com.emts.util;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Console {
@@ -37,6 +38,11 @@ public class Console {
         scanner.nextLine();
         return value;
     }
+
+    public static LocalDate dateIn() {
+        return LocalDate.parse(scanner.nextLine());
+    }
+
 
     public static BigDecimal decimalIn(){
         BigDecimal value = scanner.nextBigDecimal();

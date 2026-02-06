@@ -9,7 +9,7 @@ public class CustomerRepository extends Repository<Integer,Customer> {
 
     // In-memory repository for OOP practice
 
-    protected CustomerRepository(ConcurrentMap<Integer, Customer> database) {
+    public CustomerRepository(ConcurrentMap<Integer, Customer> database) {
         super(database);
     }
 }

@@ -1,9 +1,7 @@
 package com.emts.domain;
 
-import com.emts.domain.cli.TableCli;
-import com.emts.domain.cli.WaiterCli;
-import com.emts.domain.repositories.TableRepository;
-import com.emts.domain.repositories.WaiterRepository;
+import com.emts.domain.cli.*;
+import com.emts.domain.repositories.*;
 import com.emts.util.Console;
 import com.emts.util.cli.CliOperations;
 
@@ -11,17 +9,57 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class Restaurant {
 
+    private final WaiterCli waiterCli ;
+    private final TableCli tableCli ;
+    private final CustomerCli customerCli ;
+    private final ReservationCli reservationCli ;
+    private final MenuItemCli menuItemCli;
+
+    private CliOperations<?> cliOperations;
+
+    public Restaurant() {
+
+        waiterCli = new WaiterCli(new WaiterRepository(new ConcurrentHashMap<>()));
+        tableCli = new TableCli(new TableRepository(new ConcurrentHashMap<>()));
+        customerCli = new CustomerCli(new CustomerRepository(new ConcurrentHashMap<>()));
+        menuItemCli = new MenuItemCli(new MenuItemRepository(new ConcurrentHashMap<>()));
+
+        reservationCli = new ReservationCli(
+                new ReservationRepository(new ConcurrentHashMap<>()),
+                customerCli,
+                tableCli
+        );
+    }
+
     public void showWaiters() {
-        CliOperations cliOperations = new WaiterCli(new WaiterRepository(new ConcurrentHashMap<>()));
+        cliOperations = waiterCli;
         displayOption("Waiter",cliOperations);
     }
 
+    public void showMenuItems() {
+        cliOperations = menuItemCli;
+        displayOption("MenuItem",cliOperations);
+    }
+
     public void showTables() {
-        CliOperations cliOperations = new TableCli(new TableRepository(new ConcurrentHashMap<>()));
+        cliOperations = tableCli;
         displayOption("Table",cliOperations);
     }
 
-    private static void displayOption(String name,CliOperations cliOperations){
+    public void showCustomer() {
+        cliOperations = customerCli;
+        displayOption("Customer",cliOperations);
+    }
+
+    public void showReservation() {
+        cliOperations = reservationCli;
+        displayOption("Reservation",cliOperations);
+    }
+
+
+
+
+    private static <T> void displayOption(String name, CliOperations<T> cliOperations){
         int choice;
 
         do {

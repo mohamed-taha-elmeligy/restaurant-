@@ -8,7 +8,7 @@ import com.emts.util.cli.CliOperations;
 
 import java.math.BigDecimal;
 
-public class WaiterCli implements CliOperations {
+public class WaiterCli implements CliOperations<Waiter> {
     private final WaiterRepository waiterRepository;
     private static final String ENTER_ID = "Enter ID of Waiter";
     private static final String ENTER_NAME = "Enter name of Waiter";
@@ -57,6 +57,27 @@ public class WaiterCli implements CliOperations {
             waiter.print();
         } catch (Exception e) {
             Console.print("Error finding waiter: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public Waiter searchById() {
+        int id;
+        Waiter waiter;
+
+        try {
+            Console.print(ENTER_ID);
+            id = Console.intIn();
+
+            waiter = waiterRepository.findById(id);
+            if (waiter == null) {
+                Console.print("Waiter not found with ID: " + id);
+                return null;
+            }
+            return waiter;
+        } catch (Exception e) {
+            Console.print("Error finding waiter: " + e.getMessage());
+            return null;
         }
     }
 

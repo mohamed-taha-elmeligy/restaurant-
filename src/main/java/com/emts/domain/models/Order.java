@@ -23,7 +23,7 @@ public class Order extends Model implements Printable {
         baseId = new AtomicInteger(0);
     }
 
-    protected Order(Table table, Waiter waiter, List<OrderItem> orderItems) {
+    public Order(Table table, Waiter waiter, List<OrderItem> orderItems) {
         super(baseId.incrementAndGet());
 
         checkTable(table);
@@ -35,7 +35,7 @@ public class Order extends Model implements Printable {
         this.orderItems = new ArrayList<>(orderItems);
     }
 
-    protected Order(int id, Table table, Waiter waiter, List<OrderItem> orderItems) {
+    public Order(int id, Table table, Waiter waiter, List<OrderItem> orderItems) {
         super(id);
 
         checkTable(table);
