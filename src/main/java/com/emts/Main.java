@@ -5,7 +5,7 @@ import com.emts.util.Console;
 import com.emts.util.PhoneNumber;
 
 public class Main {
-    // Entry Point
+    // Entry Point ==================
     public static void main(String[] args) {
         Restaurant restaurant = new Restaurant(
                 "Egypt Restaurant",
