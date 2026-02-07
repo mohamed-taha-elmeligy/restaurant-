@@ -297,7 +297,7 @@ Each module supports **CRUD operations**:
 Central orchestrator that manages all CLI modules and user interactions. Implements the Facade pattern to simplify access to subsystems.
 
 ### CliOperations Interface
-Generic interface for CRUD operations:
+Generic interface for CLI operations:
 ```java
 public interface CliOperations<ID, T> {
     void create();
@@ -477,7 +477,6 @@ This project is open source and available under the [MIT License](LICENSE).
 ## Author
 
 **EMTS Development Team**
-- Email: dev@emts.com
 - Package: com.emts
 
 ## Acknowledgments
@@ -498,4 +497,4 @@ For questions or issues:
 
 **Version:** 1.0-SNAPSHOT  
 **Last Updated:** February 2024  
-**Status:** Active Development
+**Status:** Finish Development
