@@ -1,7 +1,3 @@
-تمام. هحوّله لك **إنجليزي احترافي** بنفس المحتوى تقريبًا، من غير تزويق زيادة، وجاهز تحطه README.md على GitHub مباشرة.
-
----
-
 # 🍽️ Restaurant Management System – OOP Edition
 
 > A comprehensive restaurant management system built in Java using Object-Oriented Programming (OOP) principles.
@@ -314,13 +310,3 @@ This project is licensed under the **MIT License**.
 ## ⭐ Support
 
 If you like this project, don’t forget to give it a ⭐ on GitHub.
-
----
-
-لو عايز أعمل لك:
-
-* نسخة **أقصر**
-* أو README موجه للتوظيف
-* أو تبسيط الكلام عشان يبان Training مش Enterprise
-
-قولّي واظبطهولك فورًا 👌
