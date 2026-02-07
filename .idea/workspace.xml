@@ -4,21 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="80d2c675-821f-4796-bd45-51bbd08fe92c" name="Changes" comment="Refactor CrudOperation into ReadRepository and WriteRepository interfaces&#10;Add Restaurant Facade class">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/BillCli.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/GroupMenuItemCli.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/MenuCli.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/OrderItemCli.java" afterDir="false" />
+    <list default="true" id="80d2c675-821f-4796-bd45-51bbd08fe92c" name="Changes" comment="create clis classes and display in consol">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/common/Cli.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/emts/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/emts/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/emts/domain/Restaurant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/Restaurant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/BillCli.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/BillCli.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/CustomerCli.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/CustomerCli.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/GroupMenuItemCli.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/GroupMenuItemCli.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/MenuCli.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/MenuCli.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/MenuItemCli.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/MenuItemCli.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/OrderCli.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/OrderCli.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/OrderItemCli.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/OrderItemCli.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/ReservationCli.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/ReservationCli.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/TableCli.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/TableCli.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/WaiterCli.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/emts/domain/cli/WaiterCli.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/emts/util/cli/CliOperations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/emts/util/cli/CliOperations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/emts/util/cli/WriteCli.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/emts/util/cli/WriteCli.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,7 +159,15 @@
       <option name="project" value="LOCAL؜" />
       <updated>1770407169732</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL؜-٠٠٠١١" summary="create clis classes and display in consol">
+      <option name="closed" value="true" />
+      <created>1770417743590</created>
+      <option name="number" value="٠٠٠١١" />
+      <option name="presentableId" value="LOCAL؜-٠٠٠١١" />
+      <option name="project" value="LOCAL؜" />
+      <updated>1770417743590</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -168,7 +176,8 @@
     <MESSAGE value="implement Printable interface with print() method for console output" />
     <MESSAGE value="implement all repositories with Singleton and CRUD operations" />
     <MESSAGE value="Refactor CrudOperation into ReadRepository and WriteRepository interfaces&#10;Add Restaurant Facade class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor CrudOperation into ReadRepository and WriteRepository interfaces&#10;Add Restaurant Facade class" />
+    <MESSAGE value="create clis classes and display in consol" />
+    <option name="LAST_COMMIT_MESSAGE" value="create clis classes and display in consol" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

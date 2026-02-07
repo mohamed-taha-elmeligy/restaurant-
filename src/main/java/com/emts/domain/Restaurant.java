@@ -1,13 +1,22 @@
 package com.emts.domain;
 
 import com.emts.domain.cli.*;
+import com.emts.domain.models.common.Model;
 import com.emts.domain.repositories.*;
 import com.emts.util.Console;
+import com.emts.util.PhoneNumber;
+import com.emts.util.Printable;
 import com.emts.util.cli.CliOperations;
 
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
-public class Restaurant {
+public class Restaurant extends Model implements Printable {
+
+    private static final AtomicInteger baseId = new AtomicInteger(0);
+    private String name;
+    private PhoneNumber phoneNumber;
+    private String address;
 
     private final WaiterCli waiterCli ;
     private final TableCli tableCli ;
@@ -22,7 +31,11 @@ public class Restaurant {
 
     private CliOperations<Integer,?> cliOperations;
 
-    public Restaurant() {
+    public Restaurant(String name, PhoneNumber phoneNumber, String address) {
+        super(baseId.incrementAndGet());
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
 
         this.waiterCli = new WaiterCli(new WaiterRepository(new ConcurrentHashMap<>()));
         this.tableCli = new TableCli(new TableRepository(new ConcurrentHashMap<>()));
@@ -41,6 +54,8 @@ public class Restaurant {
         this.orderCli = new OrderCli(new OrderRepository(new ConcurrentHashMap<>()),tableCli,waiterCli,orderItemCli);
         this.billCli = new BillCli(new BillRepository(new ConcurrentHashMap<>()),orderCli);
     }
+
+
 
     public void showWaiters() {
         this.cliOperations = this.waiterCli;
@@ -121,5 +136,42 @@ public class Restaurant {
                 default -> Console.print("Please choose a number from 1 to 7");
             }
         } while (choice != 7);
+    }
+
+    @Override
+    public void print() {
+        Console.plus();
+        System.out.printf("Restaurant ID:            %s%n", getId());
+        System.out.printf("Restaurant Name:          %s%n", name);
+        System.out.printf("Restaurant Phone:         %s%n", phoneNumber);
+        System.out.printf("Restaurant Address:       %s%n", address);
+        Console.plus();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Restaurant setName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public PhoneNumber getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public Restaurant setPhoneNumber(PhoneNumber phoneNumber) {
+        this.phoneNumber = phoneNumber;
+        return this;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public Restaurant setAddress(String address) {
+        this.address = address;
+        return this;
     }
 }

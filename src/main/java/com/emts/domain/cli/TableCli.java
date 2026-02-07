@@ -1,32 +1,21 @@
 package com.emts.domain.cli;
 
+import com.emts.domain.cli.common.Cli;
 import com.emts.domain.models.Table;
 import com.emts.domain.repositories.TableRepository;
 import com.emts.enums.TableStatus;
 import com.emts.exception.TableException;
 import com.emts.util.Console;
-import com.emts.util.cli.CliOperations;
 
-public class TableCli implements CliOperations<Integer,Table> {
+public class TableCli extends Cli<Table> {
 
-    private final TableRepository tableRepository;
     private static final String ENTER_CAPACITY = "Enter capacity of table";
-    private static final String ENTER_ID = "Enter id of table";
     private static final String ENTER_STATUS = "Enter status of table";
-    private static final String UNEXPECTED_ERROR = "Unexpected error: ";
 
     public TableCli(TableRepository tableRepository) {
-        this.tableRepository = tableRepository;
+        super(tableRepository);
     }
 
-    @Override
-    public void displayAll() {
-        try {
-            tableRepository.findAll().forEach(Table::print);
-        } catch (Exception e) {
-            Console.print("Error displaying tables: " + e.getMessage());
-        }
-    }
 
     @Override
     public void add() {
@@ -38,70 +27,12 @@ public class TableCli implements CliOperations<Integer,Table> {
             TableStatus tableStatus = statusOperation();
 
             Table table = new Table(capacity,tableStatus);
-            tableRepository.create(table.getId(), table).print();
+            getCrudOperation().create(table.getId(), table).print();
 
         } catch (TableException e) {
-            Console.print("Error adding table: " + e.getMessage());
+            printError("adding",e);
         } catch (Exception e) {
-            Console.print(UNEXPECTED_ERROR + e.getMessage());
-        }
-    }
-
-    @Override
-    public void findById() {
-        try {
-            Console.print(ENTER_ID);
-            int id = Console.intIn();
-            Table table = tableRepository.findById(id);
-            if (table == null) {
-                Console.print("Table not found with ID: " + id);
-                return;
-            }
-            table.print();
-        } catch (Exception e) {
-            Console.print("Error finding table: " + e.getMessage());
-        }
-    }
-
-    @Override
-    public Table searchById(Integer id) {
-        Table table;
-
-        try {
-            table = tableRepository.findById(id);
-            if (table == null) {
-                Console.print("Table not found with ID: " + id);
-                return null;
-            }
-            return table;
-        } catch (Exception e) {
-            Console.print("Error finding table: " + e.getMessage());
-            return null;
-        }
-    }
-
-    @Override
-    public void exists() {
-        try {
-            Console.print(ENTER_ID);
-            int id = Console.intIn();
-            Console.print(tableRepository.exists(id));
-        } catch (Exception e) {
-            Console.print("Error checking existence: " + e.getMessage());
-        }
-    }
-
-    @Override
-    public void deleteById() {
-        try {
-            Console.print(ENTER_ID);
-            int id = Console.intIn();
-            Table table = tableRepository.delete(id);
-            table.print();
-        } catch (TableException e) {
-            Console.print("Error deleting table: " + e.getMessage());
-        } catch (Exception e) {
-            Console.print(UNEXPECTED_ERROR + e.getMessage());
+            printUnexpectedError(e);
         }
     }
 
@@ -117,12 +48,12 @@ public class TableCli implements CliOperations<Integer,Table> {
             Console.print(ENTER_STATUS);
             TableStatus tableStatus = statusOperation();
 
-            tableRepository.update(id,new Table(id,capacity,tableStatus)).print();
+            getCrudOperation().update(id,new Table(id,capacity,tableStatus)).print();
 
         } catch (TableException e) {
-            Console.print("Error adding table: " + e.getMessage());
+            printError("updating",e);
         } catch (Exception e) {
-            Console.print(UNEXPECTED_ERROR + e.getMessage());
+            printUnexpectedError(e);
         }
     }
 
@@ -137,6 +68,7 @@ public class TableCli implements CliOperations<Integer,Table> {
             Console.print("4- "+TableStatus.SERVED);
             Console.print("5- "+TableStatus.ORDERED);
             Console.print("6- "+TableStatus.RESERVED);
+            Console.print("7- Exit");
 
             Console.line();
             Console.print("Choose: ");
@@ -150,9 +82,13 @@ public class TableCli implements CliOperations<Integer,Table> {
                 case 6 -> TableStatus.RESERVED;
                 default -> TableStatus.FREE;
             };
-        } while (choice < 7 && choice > 0);
+        } while (choice != 7);
 
         return tableStatus;
     }
 
+    @Override
+    protected String entityName() {
+        return "Table";
+    }
 }

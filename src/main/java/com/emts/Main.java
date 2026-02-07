@@ -2,18 +2,26 @@ package com.emts;
 
 import com.emts.domain.Restaurant;
 import com.emts.util.Console;
+import com.emts.util.PhoneNumber;
 
 public class Main {
 
     public static void main(String[] args) {
-        displayRestaurant();
+        Restaurant restaurant = new Restaurant(
+                "Egypt Restaurant",
+                new PhoneNumber("01282810000"),
+                "Egypt"
+        );
+
+        displayRestaurant(restaurant);
     }
 
-    private static void displayRestaurant(){
-        Restaurant restaurant = new Restaurant();
+    private static void displayRestaurant(Restaurant restaurant){
 
         int choice;
         do {
+            Console.line();
+            restaurant.print();
             Console.print("1-  Table Page");
             Console.print("2-  Waiter Page");
             Console.print("3-  Customer Page");

@@ -1,33 +1,25 @@
 package com.emts.domain.cli;
 
+import com.emts.domain.cli.common.Cli;
 import com.emts.domain.models.Waiter;
 import com.emts.domain.repositories.WaiterRepository;
 import com.emts.exception.WaiterException;
 import com.emts.util.Console;
-import com.emts.util.cli.CliOperations;
 
 import java.math.BigDecimal;
 
-public class WaiterCli implements CliOperations<Integer,Waiter> {
+public class WaiterCli extends Cli<Waiter> {
 
-    private final WaiterRepository waiterRepository;
-
-    private static final String ENTER_ID = "Enter ID of Waiter";
     private static final String ENTER_NAME = "Enter name of Waiter";
     private static final String ENTER_SALARY = "Enter salary of Waiter";
-    private static final String UNEXPECTED_ERROR = "Unexpected error: ";
 
     public WaiterCli(WaiterRepository waiterRepository) {
-        this.waiterRepository = waiterRepository;
+        super(waiterRepository);
     }
 
     @Override
-    public void displayAll() {
-        try {
-            waiterRepository.findAll().forEach(Waiter::print);
-        } catch (Exception e) {
-            Console.print("Error displaying waiters: " + e.getMessage());
-        }
+    protected String entityName() {
+        return "Waiter";
     }
 
     @Override
@@ -40,74 +32,12 @@ public class WaiterCli implements CliOperations<Integer,Waiter> {
             BigDecimal salary = Console.decimalIn();
 
             Waiter waiter = new Waiter(name, salary);
-            waiterRepository.create(waiter.getId(), waiter).print();
+            getCrudOperation().create(waiter.getId(), waiter).print();
 
         } catch (WaiterException e) {
-            Console.print("Error adding waiter: " + e.getMessage());
+            printError("adding",e);
         } catch (Exception e) {
-            Console.print(UNEXPECTED_ERROR + e.getMessage());
-        }
-    }
-
-    @Override
-    public void findById() {
-        try {
-            Console.print(ENTER_ID);
-            int id = Console.intIn();
-
-            Waiter waiter = waiterRepository.findById(id);
-            if (waiter == null) {
-                Console.print("Waiter not found with ID: " + id);
-                return;
-            }
-            waiter.print();
-        } catch (Exception e) {
-            Console.print("Error finding waiter: " + e.getMessage());
-        }
-    }
-
-    @Override
-    public Waiter searchById(Integer id) {
-        Waiter waiter;
-
-        try {
-            waiter = waiterRepository.findById(id);
-            if (waiter == null) {
-                Console.print("Waiter not found with ID: " + id);
-                return null;
-            }
-            return waiter;
-        } catch (Exception e) {
-            Console.print("Error finding waiter: " + e.getMessage());
-            return null;
-        }
-    }
-
-    @Override
-    public void exists() {
-        try {
-            Console.print(ENTER_ID);
-            int id = Console.intIn();
-
-            Console.print(waiterRepository.exists(id));
-        } catch (Exception e) {
-            Console.print("Error checking existence: " + e.getMessage());
-        }
-    }
-
-    @Override
-    public void deleteById() {
-        try {
-            Console.print(ENTER_ID);
-            int id = Console.intIn();
-
-            Waiter waiter = waiterRepository.delete(id);
-            waiter.print();
-
-        } catch (WaiterException e) {
-            Console.print("Error deleting waiter: " + e.getMessage());
-        } catch (Exception e) {
-            Console.print(UNEXPECTED_ERROR + e.getMessage());
+            printUnexpectedError(e);
         }
     }
 
@@ -123,11 +53,11 @@ public class WaiterCli implements CliOperations<Integer,Waiter> {
             Console.print(ENTER_SALARY);
             BigDecimal salary = Console.decimalIn();
 
-            waiterRepository.update(id,new Waiter(id, name, salary)).print();
+            getCrudOperation().update(id,new Waiter(id, name, salary)).print();
         } catch (WaiterException e) {
-            Console.print("Error updating waiter: " + e.getMessage());
+            printError("updating",e);
         } catch (Exception e) {
-            Console.print(UNEXPECTED_ERROR + e.getMessage());
+            printUnexpectedError(e);
         }
     }
 }

@@ -1,35 +1,27 @@
 package com.emts.domain.cli;
 
+import com.emts.domain.cli.common.Cli;
 import com.emts.domain.models.Menu;
 import com.emts.domain.models.MenuItem;
 import com.emts.domain.repositories.MenuRepository;
 import com.emts.exception.MenuException;
 import com.emts.util.Console;
-import com.emts.util.cli.CliOperations;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MenuCli implements CliOperations<Integer,Menu> {
+public class MenuCli extends Cli<Menu> {
 
-    private final MenuRepository menuRepository;
     private final MenuItemCli menuItemCli;
 
-    private static final String ENTER_ID = "Enter ID of Menu";
-    private static final String UNEXPECTED_ERROR = "Unexpected error: ";
-
     public MenuCli(MenuRepository menuRepository, MenuItemCli menuItemCli) {
-        this.menuRepository = menuRepository;
+        super(menuRepository);
         this.menuItemCli = menuItemCli;
     }
 
     @Override
-    public void displayAll() {
-        try {
-            menuRepository.findAll().forEach(Menu::print);
-        } catch (Exception e) {
-            Console.print("Error displaying menus: " + e.getMessage());
-        }
+    protected String entityName() {
+        return "Menu";
     }
 
     @Override
@@ -38,73 +30,12 @@ public class MenuCli implements CliOperations<Integer,Menu> {
             List<MenuItem> menuItems = getMenuItems();
 
             Menu menu = new Menu(menuItems);
-            menuRepository.create(menu.getId(), menu).print();
+            getCrudOperation().create(menu.getId(), menu).print();
 
         } catch (MenuException e) {
-            Console.print("Error adding menu: " + e.getMessage());
+            printError("adding",e);
         } catch (Exception e) {
-            Console.print(UNEXPECTED_ERROR + e.getMessage());
-        }
-    }
-
-    @Override
-    public void findById() {
-        try {
-            Console.print(ENTER_ID);
-            int id = Console.intIn();
-
-            Menu menu = menuRepository.findById(id);
-            if (menu == null) {
-                Console.print("Menu not found with ID: " + id);
-                return;
-            }
-            menu.print();
-        } catch (Exception e) {
-            Console.print("Error finding menu: " + e.getMessage());
-        }
-    }
-
-    @Override
-    public Menu searchById(Integer id) {
-        Menu menu;
-        try {
-            menu = menuRepository.findById(id);
-            if (menu == null) {
-                Console.print("Menu not found with ID: " + id);
-                return null;
-            }
-            return menu;
-        } catch (Exception e) {
-            Console.print("Error finding menu: " + e.getMessage());
-            return null;
-        }
-    }
-
-    @Override
-    public void exists() {
-        try {
-            Console.print(ENTER_ID);
-            int id = Console.intIn();
-
-            Console.print(menuRepository.exists(id));
-        } catch (Exception e) {
-            Console.print("Error checking existence: " + e.getMessage());
-        }
-    }
-
-    @Override
-    public void deleteById() {
-        try {
-            Console.print(ENTER_ID);
-            int id = Console.intIn();
-
-            Menu menu = menuRepository.delete(id);
-            menu.print();
-
-        } catch (MenuException e) {
-            Console.print("Error deleting menu: " + e.getMessage());
-        } catch (Exception e) {
-            Console.print(UNEXPECTED_ERROR + e.getMessage());
+            printUnexpectedError(e);
         }
     }
 
@@ -116,11 +47,11 @@ public class MenuCli implements CliOperations<Integer,Menu> {
 
             List<MenuItem> menuItems = getMenuItems();
 
-            menuRepository.update(id,new Menu(id, menuItems)).print();
+            getCrudOperation().update(id,new Menu(id, menuItems)).print();
         } catch (MenuException e) {
-            Console.print("Error updating menu: " + e.getMessage());
+            printError("updating",e);
         } catch (Exception e) {
-            Console.print(UNEXPECTED_ERROR + e.getMessage());
+            printUnexpectedError(e);
         }
     }
 
@@ -144,8 +75,6 @@ public class MenuCli implements CliOperations<Integer,Menu> {
             }
 
         } while (true);
-
         return menuItems;
     }
-
 }
