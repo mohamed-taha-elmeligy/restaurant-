@@ -85,7 +85,7 @@ src/main/java/com/emts/
 **Requirements:** Java 21, Maven 3.6+
 
 ```bash
-git clone <repo-url>
+git clone <[repo-url](https://github.com/mohamed-taha-elmeligy/restaurant-)>
 cd restaurant_oop
 mvn clean compile
 mvn exec:java -Dexec.mainClass="com.emts.Main"
